@@ -2,18 +2,15 @@ package com.tomlockapps.userbrowser;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.tomlockapps.userbrowser.picasso.CircleTransform;
 import com.tomlockapps.userbrowser.presenter.IUserPresenter;
@@ -25,9 +22,6 @@ import com.tomlockapps.userbrowser.viewmodel.UserViewModel;
 public class UserDetailActivity extends AppCompatActivity implements IUserView {
 
     private static final String EXTRA_USER = "UserDetailActivity.User";
-
-    //todo picasso - ladowanie obrazkow - progress lub stub
-    //todo strzalka back u gory
 
     private TextView nameView;
     private ImageView avatarView;
@@ -71,9 +65,12 @@ public class UserDetailActivity extends AppCompatActivity implements IUserView {
         i.putExtra(EXTRA_USER, userModel);
 
         ActivityOptionsCompat options = ActivityOptionsCompat.
-                makeSceneTransitionAnimation(activity, (View)imageView, "profile");
+                makeSceneTransitionAnimation(activity, imageView, "profile");
 
-        activity.startActivity(i, options.toBundle());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            activity.startActivityForResult(i, 1232343, options.toBundle());
+        } else
+            activity.startActivity(i);
     }
 
     @Override
@@ -93,9 +90,5 @@ public class UserDetailActivity extends AppCompatActivity implements IUserView {
         nameView.setTextColor(getResources().getColor(userViewModel.getBackgroundColorResId()));
         Picasso.with(getApplicationContext()).load(userViewModel.getAvatarUrl()).transform(new CircleTransform(getResources().getColor(userViewModel.getBackgroundColorResId()))).into(avatarView);
 
-     /*   Picasso.with(this)
-                .load(userViewModel.getAvatarUrl())
-                .networkPolicy(NetworkPolicy.OFFLINE)
-                .into(avatarView);*/
     }
 }

@@ -45,7 +45,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         final IUserModel userModel = userModelList.get(position);
 
         holder.text.setText(userModel.getName());
-        Picasso.with(holder.avatar.getContext()).load(userModel.getAvatarUrl()).into(holder.avatar);
+        Picasso.with(holder.avatar.getContext()).load(userModel.getAvatarUrl()).fit().centerCrop().into(holder.avatar);
 
         holder.setOnClickListener(new View.OnClickListener() {
             @Override

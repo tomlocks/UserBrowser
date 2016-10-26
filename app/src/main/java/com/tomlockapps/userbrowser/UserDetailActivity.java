@@ -19,6 +19,9 @@ public class UserDetailActivity extends AppCompatActivity implements IUserView {
 
     private static final String EXTRA_USER = "UserDetailActivity.User";
 
+    //todo picasso - ladowanie obrazkow - progress lub stub
+    //todo strzalka back u gory
+
     private TextView nameView;
     private ImageView avatarView;
 

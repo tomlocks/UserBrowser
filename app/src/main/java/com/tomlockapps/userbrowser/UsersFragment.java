@@ -103,7 +103,7 @@ public class UsersFragment extends Fragment implements IUsersListView {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        if(savedInstanceState == null) {
+        if(userModelList.size() == 0) {
             presenter.fetchUsers();
         }
 

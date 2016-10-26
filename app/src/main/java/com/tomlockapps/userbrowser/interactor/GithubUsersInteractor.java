@@ -2,7 +2,7 @@ package com.tomlockapps.userbrowser.interactor;
 
 import com.tomlockapps.userbrowser.viewmodel.IUserModel;
 import com.tomlockapps.userbrowser.sources.github.GithubService;
-import com.tomlockapps.userbrowser.sources.model.GithubUserModel;
+import com.tomlockapps.userbrowser.sources.github.GithubUserModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,11 @@ import retrofit2.Response;
  * Created by tomlo on 25.10.2016.
  */
 
-public class MultiSiteUsersInteractor extends BaseInteractor<IUsersInteractor.OnFinishedListener> implements IUsersInteractor {
+public class GithubUsersInteractor extends BaseInteractor<IUsersInteractor.OnFinishedListener> implements IUsersInteractor {
 
     private GithubService githubService;
 
-    public MultiSiteUsersInteractor(GithubService githubService) {
+    public GithubUsersInteractor(GithubService githubService) {
         this.githubService = githubService;
     }
 

@@ -1,13 +1,5 @@
-package com.tomlockapps.userbrowser.sources;
+package com.tomlockapps.userbrowser.sources.github;
 
-import com.tomlockapps.userbrowser.sources.github.GithubService;
-import com.tomlockapps.userbrowser.sources.model.GithubUserModel;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -30,7 +22,7 @@ public class GithubSource {
 
     private GithubSource() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com")
+                .baseUrl(API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

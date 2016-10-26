@@ -1,4 +1,4 @@
-package com.tomlockapps.userbrowser.sources.model;
+package com.tomlockapps.userbrowser.sources.github;
 
 import android.os.Parcel;
 

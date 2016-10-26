@@ -3,16 +3,6 @@ package com.tomlockapps.userbrowser;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.tomlockapps.userbrowser.sources.GithubSource;
-import com.tomlockapps.userbrowser.sources.github.GithubService;
-import com.tomlockapps.userbrowser.sources.model.GithubUserModel;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override

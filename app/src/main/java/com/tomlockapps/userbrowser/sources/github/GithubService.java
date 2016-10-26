@@ -1,7 +1,5 @@
 package com.tomlockapps.userbrowser.sources.github;
 
-import com.tomlockapps.userbrowser.sources.model.GithubUserModel;
-
 import java.util.List;
 
 import retrofit2.Call;

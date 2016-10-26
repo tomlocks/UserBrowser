@@ -10,4 +10,5 @@ import android.os.Parcelable;
 public interface IUserModel extends Parcelable{
     String getName();
     String getAvatarUrl();
+    UserColor getBackgroundColor();
 }

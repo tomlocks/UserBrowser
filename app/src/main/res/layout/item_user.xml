@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_height="200dp"
     android:layout_margin="2dp"
-    android:layout_height="200dp">
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
 
         android:id="@+id/card_view"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         card_view:cardCornerRadius="4dp">
 
         <RelativeLayout
-            android:orientation="vertical"
+            android:padding="2dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <ImageView
-                android:src="@mipmap/ic_launcher"
                 android:id="@+id/item_user_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_launcher" />
 
-        <TextView
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:padding="7dp"
-            android:textColor="#ffffff"
-            android:background="#662a2a2a"
-            android:layout_alignBottom="@id/item_user_image"
-            android:text="Andrew"
-            android:id="@+id/item_user_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            <TextView
+                android:id="@+id/item_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/item_user_image"
+                android:background="#662a2a2a"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:text="Andrew"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
         </RelativeLayout>

@@ -5,6 +5,7 @@ import android.os.Parcel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.tomlockapps.userbrowser.viewmodel.IUserModel;
+import com.tomlockapps.userbrowser.viewmodel.UserColor;
 
 /**
  * Created by tomlo on 26.10.2016.
@@ -26,6 +27,11 @@ public class DailyMotionUserModel implements IUserModel{
     @Override
     public String getAvatarUrl() {
         return avatar360Url;
+    }
+
+    @Override
+    public UserColor getBackgroundColor() {
+        return UserColor.LIME;
     }
 
 

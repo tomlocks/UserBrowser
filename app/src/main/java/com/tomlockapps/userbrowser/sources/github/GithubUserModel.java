@@ -5,6 +5,7 @@ import android.os.Parcel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.tomlockapps.userbrowser.viewmodel.IUserModel;
+import com.tomlockapps.userbrowser.viewmodel.UserColor;
 
 /**
  * Created by tomlo on 25.10.2016.
@@ -72,6 +73,11 @@ public class GithubUserModel implements IUserModel {
     @Override
     public String getAvatarUrl() {
         return avatarUrl;
+    }
+
+    @Override
+    public UserColor getBackgroundColor() {
+        return UserColor.BLUE;
     }
 
 

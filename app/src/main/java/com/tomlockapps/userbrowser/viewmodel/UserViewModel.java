@@ -7,10 +7,16 @@ package com.tomlockapps.userbrowser.viewmodel;
 public class UserViewModel {
     private String avatarUrl;
     private String name;
+    private int backgroundColorResId;
 
-    public UserViewModel(String avatarUrl, String name) {
+    public UserViewModel(String avatarUrl, String name, int backgroundColorResId) {
         this.avatarUrl = avatarUrl;
         this.name = name;
+        this.backgroundColorResId = backgroundColorResId;
+    }
+
+    public int getBackgroundColorResId() {
+        return backgroundColorResId;
     }
 
     public String getAvatarUrl() {

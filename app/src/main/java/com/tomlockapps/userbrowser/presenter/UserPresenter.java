@@ -14,7 +14,7 @@ public class UserPresenter implements IUserPresenter {
 
     @Override
     public void initWithModel(IUserModel userModel) {
-        UserViewModel userViewModel = new UserViewModel(userModel.getAvatarUrl(), userModel.getName());
+        UserViewModel userViewModel = new UserViewModel(userModel.getAvatarUrl(), userModel.getName(), userModel.getBackgroundColor().getColorResId());
 
         view.showUserDetail(userViewModel);
     }

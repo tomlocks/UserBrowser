@@ -71,6 +71,7 @@ public class UserDetailActivity extends AppCompatActivity implements IUserView {
     @Override
     public void showUserDetail(UserViewModel userViewModel) {
         nameView.setText(userViewModel.getName());
+        nameView.setTextColor(userViewModel.getBackgroundColorResId());
         Picasso.with(getApplicationContext()).load(userViewModel.getAvatarUrl()).into(avatarView);
     }
 }

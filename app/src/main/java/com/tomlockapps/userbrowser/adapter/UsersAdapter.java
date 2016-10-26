@@ -1,5 +1,7 @@
 package com.tomlockapps.userbrowser.adapter;
 
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
@@ -45,6 +47,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         final IUserModel userModel = userModelList.get(position);
 
         holder.text.setText(userModel.getName());
+        holder.cardView.setCardBackgroundColor(holder.cardView.getContext().getResources().getColor(userModel.getBackgroundColor().getColorResId()));
+
         Picasso.with(holder.avatar.getContext()).load(userModel.getAvatarUrl()).fit().centerCrop().into(holder.avatar);
 
         holder.setOnClickListener(new View.OnClickListener() {
@@ -65,12 +69,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
         final ImageView avatar;
         final TextView text;
+        final CardView cardView;
 
         public UserViewHolder(View itemView) {
             super(itemView);
 
             avatar = (ImageView) itemView.findViewById(R.id.item_user_image);
             text =  (TextView) itemView.findViewById(R.id.item_user_name);
+            cardView = (CardView) itemView.findViewById(R.id.card_view);
         }
 
         public void setOnClickListener(View.OnClickListener onClickListener) {

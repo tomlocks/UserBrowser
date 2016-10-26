@@ -21,6 +21,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:transitionName="profile"
                 android:id="@+id/item_user_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -31,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/item_user_image"
-                android:background="#662a2a2a"
+                android:background="@color/opaqueBackground"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="7dp"

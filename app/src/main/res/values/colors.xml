@@ -6,4 +6,6 @@
 
     <color name="userColorBlue">#2196F3</color>
     <color name="userColorLime">#CDDC39</color>
+
+    <color name="opaqueBackground">#662a2a2a</color>
 </resources>

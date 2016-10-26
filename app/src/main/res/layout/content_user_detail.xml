@@ -9,14 +9,25 @@
     tools:context="com.tomlockapps.userbrowser.UserDetailActivity"
     tools:showIn="@layout/activity_user_detail">
 
-    <TextView
-        android:id="@+id/user_detail_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <ImageView
+        android:layout_centerInParent="true"
+        android:src="@mipmap/ic_launcher"
+        android:transitionName="profile"
         android:id="@+id/user_detail_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="260dp"
+        android:layout_height="260dp" />
+
+    <TextView
+        android:text="Nickname"
+        android:textSize="27sp"
+        android:gravity="center"
+        android:id="@+id/user_detail_name"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/user_detail_image"
+        android:layout_alignLeft="@+id/user_detail_image"
+        android:layout_alignStart="@+id/user_detail_image"
+        android:layout_alignRight="@+id/user_detail_image"
+        android:layout_alignEnd="@+id/user_detail_image" />
 
 </RelativeLayout>

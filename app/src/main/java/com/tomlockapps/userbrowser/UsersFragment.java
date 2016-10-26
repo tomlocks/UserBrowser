@@ -10,14 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tomlockapps.userbrowser.action.FragmentUsersListActions;
+import com.tomlockapps.userbrowser.action.AnimatedUsersListActions;
 import com.tomlockapps.userbrowser.adapter.UsersAdapter;
 import com.tomlockapps.userbrowser.interactor.DailyMotionUsersInteractor;
 import com.tomlockapps.userbrowser.interactor.GithubUsersInteractor;
 import com.tomlockapps.userbrowser.interactor.MultiSourceUsersInteractor;
 import com.tomlockapps.userbrowser.presenter.IUsersListPresenter;
 import com.tomlockapps.userbrowser.presenter.UsersListPresenter;
-import com.tomlockapps.userbrowser.sources.dailymotion.DailyMotionService;
 import com.tomlockapps.userbrowser.sources.dailymotion.DailyMotionSource;
 import com.tomlockapps.userbrowser.sources.github.GithubSource;
 import com.tomlockapps.userbrowser.view.IUsersListView;
@@ -37,6 +36,8 @@ public class UsersFragment extends Fragment implements IUsersListView {
     private UsersAdapter adapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private AnimatedUsersListActions actions;
+
     private final ArrayList<IUserModel> userModelList = new ArrayList<>();
 
 
@@ -55,7 +56,9 @@ public class UsersFragment extends Fragment implements IUsersListView {
 
         MultiSourceUsersInteractor multiSourceUsersInteractor = new MultiSourceUsersInteractor(new DailyMotionUsersInteractor(DailyMotionSource.getService()), new GithubUsersInteractor(GithubSource.getService()));
 
-        presenter = new UsersListPresenter(this, new FragmentUsersListActions(getActivity()), multiSourceUsersInteractor);//new MultiSiteUsersInteractor(GithubSource.getService()));
+        actions = new AnimatedUsersListActions(getActivity());
+
+        presenter = new UsersListPresenter(this, actions, multiSourceUsersInteractor);//new MultiSiteUsersInteractor(GithubSource.getService()));
         mLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
     }
 
@@ -146,7 +149,9 @@ public class UsersFragment extends Fragment implements IUsersListView {
 
     private UsersAdapter.OnItemClickListener onItemClickListener = new UsersAdapter.OnItemClickListener() {
         @Override
-        public void onItemClick(IUserModel userModel) {
+        public void onItemClick(IUserModel userModel, View imageView) {
+            actions.setImageView(imageView);
+
             presenter.onUserClick(userModel);
         }
     };

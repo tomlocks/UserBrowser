@@ -43,7 +43,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     }
 
     @Override
-    public void onBindViewHolder(UserViewHolder holder, int position) {
+    public void onBindViewHolder(final UserViewHolder holder, int position) {
         final IUserModel userModel = userModelList.get(position);
 
         holder.text.setText(userModel.getName());
@@ -55,7 +55,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
             @Override
             public void onClick(View v) {
                 if(onItemClickListener != null)
-                    onItemClickListener.onItemClick(userModel);
+                    onItemClickListener.onItemClick(userModel, holder.avatar);
             }
         });
     }
@@ -89,7 +89,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     }
 
     public interface OnItemClickListener {
-        void onItemClick(IUserModel userModel);
+        void onItemClick(IUserModel userModel, View view);
     }
 
 }

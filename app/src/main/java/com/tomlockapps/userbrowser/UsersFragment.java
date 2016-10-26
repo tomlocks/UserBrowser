@@ -86,7 +86,10 @@ public class UsersFragment extends Fragment implements IUsersListView {
         }
 
         swipeRefresh = (SwipeRefreshLayout) inflated.findViewById(R.id.swipeRefresh);
-
+        swipeRefresh.setColorSchemeResources(
+                R.color.colorAccent,
+                R.color.colorAccent,
+                R.color.colorAccent);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

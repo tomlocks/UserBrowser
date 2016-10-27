@@ -5,7 +5,6 @@ import com.tomlockapps.userbrowser.view.IUsersListView;
 import com.tomlockapps.userbrowser.viewmodel.IUserModel;
 import com.tomlockapps.userbrowser.viewmodel.UsersViewModel;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
@@ -52,7 +51,7 @@ public class UsersListPresenter extends BasePresenter<IUsersListView> implements
         @Override
         public void onFail() {
             if(isViewAttached()) {
-                getView().showFailMessage();
+                getView().showFetchFailMessage();
                 getView().showProgress(false);
             }
         }

@@ -6,6 +6,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
+ * Source of all dailymotion data.
+ *
  * Created by tomlo on 25.10.2016.
  */
 

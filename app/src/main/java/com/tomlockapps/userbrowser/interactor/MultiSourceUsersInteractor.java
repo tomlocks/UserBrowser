@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Special interactor that merges all the data from multiple source before passing it to presenter. NOTE all the sources must return result otherwise the interactor will pass onFail to presenter.
+ *
  * Created by tomlo on 26.10.2016.
  */
 

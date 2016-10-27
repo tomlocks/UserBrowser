@@ -26,7 +26,10 @@ import com.squareup.picasso.Transformation;
 import com.tomlockapps.userbrowser.R;
 
 /**
+ * Class responsible for Circle Transformation in Picasso.
+ *
  * Created by julian on 13/6/21.
+ * Modified by tomlo on 26.10.2016.
  */
 public class CircleTransform implements Transformation {
 

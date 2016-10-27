@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import java.util.List;
 
 /**
+ * This method contains all the data that needs to be shown on Users List view.
+ *
  * Created by tomlo on 25.10.2016.
  */
 

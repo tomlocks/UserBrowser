@@ -12,6 +12,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
+ * Interactor responsible for fetching user datas from Github.
+ *
  * Created by tomlo on 25.10.2016.
  */
 

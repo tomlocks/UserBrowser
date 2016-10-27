@@ -14,6 +14,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
+ * Interactor responsible for fetching user datas from DailtMotion.
+ *
  * Created by tomlo on 26.10.2016.
  */
 

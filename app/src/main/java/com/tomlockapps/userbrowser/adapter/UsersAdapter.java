@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Adapter responsible for showing user information(name, avatars).
+ *
  * Created by tomlo on 25.10.2016.
  */
 

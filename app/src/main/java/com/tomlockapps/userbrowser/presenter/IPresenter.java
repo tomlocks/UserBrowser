@@ -1,6 +1,8 @@
 package com.tomlockapps.userbrowser.presenter;
 
 /**
+ * Base interface for all presenter.
+ *
  * Created by tomlo on 25.10.2016.
  */
 

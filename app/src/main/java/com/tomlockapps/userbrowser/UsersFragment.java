@@ -168,7 +168,7 @@ public class UsersFragment extends Fragment implements IUsersListView {
     };
 
     @Override
-    public void showFailMessage() {
+    public void showFetchFailMessage() {
         Snackbar.make(getView(), R.string.fetching_error, Snackbar.LENGTH_SHORT).show();
     }
 }

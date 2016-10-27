@@ -5,12 +5,14 @@ import com.tomlockapps.userbrowser.viewmodel.IUserModel;
 import java.util.List;
 
 /**
+ * Interface which defines methods that every UsersInteractor must include.
+ *
  * Created by tomlo on 25.10.2016.
  */
 
 public interface IUsersInteractor extends IBaseInteractor<IUsersInteractor.OnFinishedListener>{
     /**
-     * Fetches the users from any source.
+     * Fetches the users from source.
      *
      * @return true if users are fetched immediately, false otherwise
      */

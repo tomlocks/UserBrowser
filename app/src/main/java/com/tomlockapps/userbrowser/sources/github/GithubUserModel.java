@@ -8,6 +8,8 @@ import com.tomlockapps.userbrowser.viewmodel.IUserModel;
 import com.tomlockapps.userbrowser.viewmodel.UserColor;
 
 /**
+ * Source of all Github data.
+ *
  * Created by tomlo on 25.10.2016.
  */
 

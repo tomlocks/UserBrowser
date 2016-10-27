@@ -13,10 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.timeout;
@@ -65,7 +62,7 @@ public class UsersListPresenterTest {
 
 
         Mockito.verify(mockView, times(1)).showProgress(false);
-        Mockito.verify(mockView, times(0)).showFailMessage();
+        Mockito.verify(mockView, times(0)).showFetchFailMessage();
     }
 
     @Test
@@ -75,7 +72,7 @@ public class UsersListPresenterTest {
         presenter.attach(mockView);
 
         presenter.fetchUsers();
-        Mockito.verify(mockView, timeout(2000).times(1)).showFailMessage();
+        Mockito.verify(mockView, timeout(2000).times(1)).showFetchFailMessage();
 
 
         Mockito.verify(mockView,times(1)).showProgress(true);
@@ -101,7 +98,7 @@ public class UsersListPresenterTest {
 
         Mockito.verify(mockView, times(0)).showProgress(true);
         Mockito.verify(mockView, times(1)).showProgress(false);
-        Mockito.verify(mockView, times(0)).showFailMessage();
+        Mockito.verify(mockView, times(0)).showFetchFailMessage();
     }
 
     @Test

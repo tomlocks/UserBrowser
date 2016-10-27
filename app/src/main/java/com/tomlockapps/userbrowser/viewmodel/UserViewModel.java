@@ -1,6 +1,8 @@
 package com.tomlockapps.userbrowser.viewmodel;
 
 /**
+ * This method contains all the data that needs to be shown on Users Detail view.
+ *
  * Created by tomlo on 25.10.2016.
  */
 

@@ -3,6 +3,8 @@ package com.tomlockapps.userbrowser.viewmodel;
 import com.tomlockapps.userbrowser.R;
 
 /**
+ * Enum class that contains all the colors that are used on cards.
+ *
  * Created by tomlo on 26.10.2016.
  */
 

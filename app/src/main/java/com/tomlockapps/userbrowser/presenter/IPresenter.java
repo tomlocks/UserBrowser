@@ -8,5 +8,6 @@ public interface IPresenter<K> {
     void init();
     void uninit();
 
-    void setView(K view);
+    void attach(K view);
+    void detachView();
 }

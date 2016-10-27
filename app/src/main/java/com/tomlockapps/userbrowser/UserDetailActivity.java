@@ -41,7 +41,7 @@ public class UserDetailActivity extends AppCompatActivity implements IUserView {
 
         presenter = new UserPresenter();
 
-        presenter.setView(this);
+        presenter.attach(this);
 
         presenter.initWithModel(userModel);
     }
@@ -82,6 +82,13 @@ public class UserDetailActivity extends AppCompatActivity implements IUserView {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        presenter.detachView();
     }
 
     @Override

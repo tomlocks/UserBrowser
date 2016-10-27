@@ -58,7 +58,7 @@ public class UsersFragment extends Fragment implements IUsersListView {
 
         actions = new AnimatedUsersListActions(getActivity());
 
-        presenter = new UsersListPresenter(this, actions, multiSourceUsersInteractor);//new MultiSiteUsersInteractor(GithubSource.getService()));
+        presenter = new UsersListPresenter(actions, multiSourceUsersInteractor);//new MultiSiteUsersInteractor(GithubSource.getService()));
         mLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
     }
 
@@ -115,11 +115,20 @@ public class UsersFragment extends Fragment implements IUsersListView {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        presenter.attach(this);
+
         if(userModelList.size() == 0) {
             presenter.fetchUsers();
         }
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        presenter.detachView();
     }
 
     @Override

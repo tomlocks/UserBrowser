@@ -1,6 +1,5 @@
 package com.tomlockapps.userbrowser.presenter;
 
-import com.tomlockapps.userbrowser.action.IUsersListActions;
 import com.tomlockapps.userbrowser.interactor.IUsersInteractor;
 import com.tomlockapps.userbrowser.view.IUsersListView;
 import com.tomlockapps.userbrowser.viewmodel.IUserModel;
@@ -16,11 +15,9 @@ import java.util.List;
 public class UsersListPresenter extends BasePresenter<IUsersListView> implements IUsersListPresenter {
 
     private IUsersInteractor interactor;
-    private IUsersListActions actions;
 
-    public UsersListPresenter(IUsersListActions actions, IUsersInteractor interactor) {
+    public UsersListPresenter(IUsersInteractor interactor) {
         this.interactor = interactor;
-        this.actions = actions;
 
         interactor.setListener(onFinishedListener);
     }
@@ -35,7 +32,9 @@ public class UsersListPresenter extends BasePresenter<IUsersListView> implements
 
     @Override
     public void onUserClick(IUserModel userModel) {
-        actions.showUserDetails(userModel);
+        if(isViewAttached()) {
+            getView().showUserDetails(userModel);
+        }
     }
 
 

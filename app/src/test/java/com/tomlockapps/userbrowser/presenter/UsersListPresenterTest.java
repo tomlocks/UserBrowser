@@ -1,15 +1,12 @@
 package com.tomlockapps.userbrowser.presenter;
 
-import com.tomlockapps.userbrowser.action.IUsersListActions;
 import com.tomlockapps.userbrowser.interactor.IUsersInteractor;
 import com.tomlockapps.userbrowser.presenter.mock.MockedImmediateUsersInteractor;
 import com.tomlockapps.userbrowser.presenter.mock.MockedNetworkUsersInteractor;
 import com.tomlockapps.userbrowser.presenter.mock.MockedUser;
-import com.tomlockapps.userbrowser.view.IUserView;
 import com.tomlockapps.userbrowser.view.IUsersListView;
 import com.tomlockapps.userbrowser.viewmodel.IUserModel;
 import com.tomlockapps.userbrowser.viewmodel.UserColor;
-import com.tomlockapps.userbrowser.viewmodel.UserViewModel;
 import com.tomlockapps.userbrowser.viewmodel.UsersViewModel;
 
 import org.junit.Before;
@@ -32,7 +29,6 @@ public class UsersListPresenterTest {
 
     private UsersListPresenter presenter;
 
-    private IUsersListActions mockActions;
     private IUsersInteractor mockInteractor;
     private IUsersListView mockView;
 
@@ -46,16 +42,13 @@ public class UsersListPresenterTest {
     public void setUp() throws Exception {
         viewModelCaptor = ArgumentCaptor.forClass(UsersViewModel.class);
         userModelCaptor = ArgumentCaptor.forClass(IUserModel.class);
-
-        mockActions = Mockito.mock(IUsersListActions.class);
-
         mockView = Mockito.mock(IUsersListView.class);
     }
 
     @Test
     public void fetchUsersNetworkSuccess() throws Exception {
         mockInteractor = new MockedNetworkUsersInteractor(true);
-        presenter = new UsersListPresenter(mockActions, mockInteractor);
+        presenter = new UsersListPresenter(mockInteractor);
         presenter.attach(mockView);
 
         presenter.fetchUsers();
@@ -78,7 +71,7 @@ public class UsersListPresenterTest {
     @Test
     public void fetchUsersNetworkFail() throws Exception {
         mockInteractor = new MockedNetworkUsersInteractor(false);
-        presenter = new UsersListPresenter(mockActions, mockInteractor);
+        presenter = new UsersListPresenter(mockInteractor);
         presenter.attach(mockView);
 
         presenter.fetchUsers();
@@ -93,7 +86,7 @@ public class UsersListPresenterTest {
     @Test
     public void fetchUsersImmediate() throws Exception {
         mockInteractor = new MockedImmediateUsersInteractor();
-        presenter = new UsersListPresenter(mockActions, mockInteractor);
+        presenter = new UsersListPresenter(mockInteractor);
         presenter.attach(mockView);
 
         presenter.fetchUsers();
@@ -114,10 +107,12 @@ public class UsersListPresenterTest {
     @Test
     public void onUserClick() throws Exception {
         mockInteractor = new MockedImmediateUsersInteractor();
-        presenter = new UsersListPresenter(mockActions, mockInteractor);
+        presenter = new UsersListPresenter(mockInteractor);
+        presenter.attach(mockView);
+
         presenter.onUserClick(new MockedUser("Test", "www", UserColor.LIME));
 
-        Mockito.verify(mockActions).showUserDetails(userModelCaptor.capture());
+        Mockito.verify(mockView).showUserDetails(userModelCaptor.capture());
 
         assertEquals(userModelCaptor.getValue().getName(), "Test");
         assertEquals(userModelCaptor.getValue().getAvatarUrl(), "www");

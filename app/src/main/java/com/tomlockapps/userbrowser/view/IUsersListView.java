@@ -1,5 +1,6 @@
 package com.tomlockapps.userbrowser.view;
 
+import com.tomlockapps.userbrowser.viewmodel.IUserModel;
 import com.tomlockapps.userbrowser.viewmodel.UsersViewModel;
 
 /**
@@ -9,6 +10,8 @@ import com.tomlockapps.userbrowser.viewmodel.UsersViewModel;
 public interface IUsersListView {
     void showUsers(UsersViewModel viewModel);
     void showProgress(boolean show);
+
+    void showUserDetails(IUserModel userModel);
 
     void showFailMessage();
 }

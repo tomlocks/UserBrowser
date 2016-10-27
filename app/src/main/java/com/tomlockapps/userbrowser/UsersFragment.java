@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tomlockapps.userbrowser.action.AnimatedUsersListActions;
 import com.tomlockapps.userbrowser.adapter.UsersAdapter;
 import com.tomlockapps.userbrowser.interactor.DailyMotionUsersInteractor;
 import com.tomlockapps.userbrowser.interactor.GithubUsersInteractor;
@@ -36,7 +35,7 @@ public class UsersFragment extends Fragment implements IUsersListView {
     private UsersAdapter adapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private AnimatedUsersListActions actions;
+    private View lastImageViewClicked; // is a better way?
 
     private final ArrayList<IUserModel> userModelList = new ArrayList<>();
 
@@ -56,9 +55,7 @@ public class UsersFragment extends Fragment implements IUsersListView {
 
         MultiSourceUsersInteractor multiSourceUsersInteractor = new MultiSourceUsersInteractor(new DailyMotionUsersInteractor(DailyMotionSource.getService()), new GithubUsersInteractor(GithubSource.getService()));
 
-        actions = new AnimatedUsersListActions(getActivity());
-
-        presenter = new UsersListPresenter(actions, multiSourceUsersInteractor);//new MultiSiteUsersInteractor(GithubSource.getService()));
+        presenter = new UsersListPresenter(multiSourceUsersInteractor);//new MultiSiteUsersInteractor(GithubSource.getService()));
         mLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
     }
 
@@ -150,6 +147,11 @@ public class UsersFragment extends Fragment implements IUsersListView {
     }
 
     @Override
+    public void showUserDetails(IUserModel userModel) {
+        UserDetailActivity.startActivity(getActivity(), lastImageViewClicked, userModel);
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
@@ -159,7 +161,7 @@ public class UsersFragment extends Fragment implements IUsersListView {
     private UsersAdapter.OnItemClickListener onItemClickListener = new UsersAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(IUserModel userModel, View imageView) {
-            actions.setImageView(imageView);
+            lastImageViewClicked = imageView;
 
             presenter.onUserClick(userModel);
         }

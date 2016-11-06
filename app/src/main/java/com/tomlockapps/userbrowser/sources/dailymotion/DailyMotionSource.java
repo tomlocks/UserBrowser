@@ -1,6 +1,8 @@
 package com.tomlockapps.userbrowser.sources.dailymotion;
 
+import com.tomlockapps.userbrowser.sources.RetrofitServiceCreator;
 import com.tomlockapps.userbrowser.sources.github.GithubService;
+import com.tomlockapps.userbrowser.sources.github.GithubSource;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,11 +27,6 @@ public class DailyMotionSource {
     }
 
     private DailyMotionSource() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        service = retrofit.create(DailyMotionService.class);
+        service = RetrofitServiceCreator.createRetrofitService(DailyMotionService.class, API);
     }
 }

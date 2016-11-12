@@ -22,6 +22,20 @@ public class UsersListPresenter extends BasePresenter<IUsersListView> implements
     }
 
     @Override
+    public void init() {
+        super.init();
+
+        interactor.init();
+    }
+
+    @Override
+    public void uninit() {
+        super.uninit();
+
+        interactor.uninit();
+    }
+
+    @Override
     public void fetchUsers() {
         if(!interactor.fetchUsers()) {
             if(isViewAttached())

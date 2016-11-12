@@ -8,4 +8,6 @@ package com.tomlockapps.userbrowser.interactor;
 
 public interface IBaseInteractor<K>  {
     void setListener(K listener);
+    void init();
+    void uninit();
 }

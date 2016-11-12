@@ -7,6 +7,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import rx.Observable;
 
 /**
  * Created by tomlo on 26.10.2016.
@@ -14,5 +15,5 @@ import retrofit2.http.Query;
 
 public interface DailyMotionService {
         @GET("users")
-        Call<DailyMotionResponse> getUsers(@Query("fields[]") List<String> keywords);
+        Observable<DailyMotionResponse> getUsers(@Query("fields[]") List<String> keywords);
 }

@@ -11,13 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tomlockapps.userbrowser.adapter.UsersAdapter;
-import com.tomlockapps.userbrowser.interactor.DailyMotionUsersInteractor;
-import com.tomlockapps.userbrowser.interactor.GithubUsersInteractor;
 import com.tomlockapps.userbrowser.interactor.MultiSourceUsersInteractor;
 import com.tomlockapps.userbrowser.presenter.IUsersListPresenter;
 import com.tomlockapps.userbrowser.presenter.UsersListPresenter;
-import com.tomlockapps.userbrowser.sources.dailymotion.DailyMotionSource;
-import com.tomlockapps.userbrowser.sources.github.GithubSource;
 import com.tomlockapps.userbrowser.view.IUsersListView;
 import com.tomlockapps.userbrowser.viewmodel.IUserModel;
 import com.tomlockapps.userbrowser.viewmodel.UsersViewModel;
@@ -53,9 +49,7 @@ public class UsersFragment extends Fragment implements IUsersListView {
 
         adapter.setOnItemClickListener(onItemClickListener);
 
-        MultiSourceUsersInteractor multiSourceUsersInteractor = new MultiSourceUsersInteractor(new DailyMotionUsersInteractor(DailyMotionSource.getService()), new GithubUsersInteractor(GithubSource.getService()));
-
-        presenter = new UsersListPresenter(multiSourceUsersInteractor);//new MultiSiteUsersInteractor(GithubSource.getService()));
+        presenter = new UsersListPresenter(new MultiSourceUsersInteractor());//new MultiSiteUsersInteractor(GithubSource.getService()));
         mLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
     }
 
@@ -134,6 +128,7 @@ public class UsersFragment extends Fragment implements IUsersListView {
 
         userModelList.addAll(viewModel.getiUserModelList());
         adapter.notifyDataSetChanged();
+//        adapter.notifyItemInserted(userModelList.size());
     }
 
     @Override

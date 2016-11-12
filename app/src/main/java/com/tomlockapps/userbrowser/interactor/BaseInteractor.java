@@ -10,6 +10,14 @@ package com.tomlockapps.userbrowser.interactor;
 public abstract class BaseInteractor<K> implements IBaseInteractor<K> {
     protected K listener;
 
+    public void init() {
+
+    }
+
+    public void uninit() {
+
+    }
+
     @Override
     public void setListener(K listener) {
         this.listener = listener;

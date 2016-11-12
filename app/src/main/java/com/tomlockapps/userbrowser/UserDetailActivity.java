@@ -68,7 +68,7 @@ public class UserDetailActivity extends AppCompatActivity implements IUserView {
                 makeSceneTransitionAnimation(activity, imageView, "profile");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            activity.startActivityForResult(i, 1232343, options.toBundle());
+            activity.startActivityForResult(i, 1234, options.toBundle());
         } else
             activity.startActivity(i);
     }

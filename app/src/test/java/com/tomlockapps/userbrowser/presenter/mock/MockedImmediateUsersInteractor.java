@@ -16,7 +16,7 @@ public class MockedImmediateUsersInteractor implements IUsersInteractor {
     private OnFinishedListener onFinishedListener;
 
     @Override
-    public boolean fetchUsers() {
+    public boolean fetch() {
         List<IUserModel> userModels = new ArrayList<>();
 
         userModels.add(new MockedUser("Adam", "www.example.org", UserColor.BLUE));

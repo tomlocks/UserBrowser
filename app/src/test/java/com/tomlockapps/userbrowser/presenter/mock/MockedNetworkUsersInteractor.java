@@ -22,7 +22,7 @@ public class MockedNetworkUsersInteractor implements IUsersInteractor {
     }
 
     @Override
-    public boolean fetchUsers() {
+    public boolean fetch() {
         if (success) {
             final List<IUserModel> userModels = new ArrayList<>();
 

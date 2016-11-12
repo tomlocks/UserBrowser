@@ -49,7 +49,7 @@ public class UsersFragment extends Fragment implements IUsersListView {
 
         adapter.setOnItemClickListener(onItemClickListener);
 
-        presenter = new UsersListPresenter(new MultiSourceUsersInteractor());//new MultiSiteUsersInteractor(GithubSource.getService()));
+        presenter = new UsersListPresenter(new MultiSourceUsersInteractor());
         mLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
     }
 

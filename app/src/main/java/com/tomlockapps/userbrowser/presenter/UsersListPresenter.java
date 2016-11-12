@@ -6,6 +6,7 @@ import com.tomlockapps.userbrowser.viewmodel.IUserModel;
 import com.tomlockapps.userbrowser.viewmodel.UsersViewModel;
 
 import java.util.List;
+import rx.Observer;
 
 /**
  * Created by tomlo on 25.10.2016.
@@ -17,8 +18,6 @@ public class UsersListPresenter extends BasePresenter<IUsersListView> implements
 
     public UsersListPresenter(IUsersInteractor interactor) {
         this.interactor = interactor;
-
-        interactor.setListener(onFinishedListener);
     }
 
     @Override
@@ -37,7 +36,7 @@ public class UsersListPresenter extends BasePresenter<IUsersListView> implements
 
     @Override
     public void fetchUsers() {
-        if(!interactor.fetchUsers()) {
+        if(!interactor.fetch(observer)) {
             if(isViewAttached())
                 getView().showProgress(true);
         }
@@ -51,23 +50,30 @@ public class UsersListPresenter extends BasePresenter<IUsersListView> implements
     }
 
 
-    private IUsersInteractor.OnFinishedListener onFinishedListener = new IUsersInteractor.OnFinishedListener() {
+    private Observer<List<IUserModel>> observer = new Observer<List<IUserModel>>() {
         @Override
-        public void onSuccess(List<IUserModel> userModels) {
-            UsersViewModel usersViewModel = new UsersViewModel(userModels);
-
+        public void onCompleted() {
             if(isViewAttached()) {
-                getView().showUsers(usersViewModel);
                 getView().showProgress(false);
             }
         }
 
         @Override
-        public void onFail() {
+        public void onError(Throwable e) {
             if(isViewAttached()) {
                 getView().showFetchFailMessage();
                 getView().showProgress(false);
             }
         }
+
+        @Override
+        public void onNext(List<IUserModel> iUserModels) {
+            UsersViewModel usersViewModel = new UsersViewModel(iUserModels);
+
+            if(isViewAttached()) {
+                getView().showUsers(usersViewModel);
+            }
+        }
     };
+
 }

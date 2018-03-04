@@ -5,9 +5,8 @@ import com.tomlockapps.userbrowser.presenter.mock.MockedImmediateUsersInteractor
 import com.tomlockapps.userbrowser.presenter.mock.MockedNetworkUsersInteractor;
 import com.tomlockapps.userbrowser.presenter.mock.MockedUser;
 import com.tomlockapps.userbrowser.view.IUsersListView;
-import com.tomlockapps.userbrowser.viewmodel.IUserModel;
-import com.tomlockapps.userbrowser.viewmodel.UserColor;
-import com.tomlockapps.userbrowser.viewmodel.UsersViewModel;
+import com.tomlockapps.userbrowser.data.IUserModel;
+import com.tomlockapps.userbrowser.viewmodel.UsersViewModelDeprcetead22;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,14 +29,14 @@ public class UsersListPresenterTest {
     private IUsersListView mockView;
 
     @Captor
-    ArgumentCaptor<UsersViewModel> viewModelCaptor;
+    ArgumentCaptor<UsersViewModelDeprcetead22> viewModelCaptor;
 
     @Captor
     ArgumentCaptor<IUserModel> userModelCaptor;
 
     @Before
     public void setUp() throws Exception {
-        viewModelCaptor = ArgumentCaptor.forClass(UsersViewModel.class);
+        viewModelCaptor = ArgumentCaptor.forClass(UsersViewModelDeprcetead22.class);
         userModelCaptor = ArgumentCaptor.forClass(IUserModel.class);
         mockView = Mockito.mock(IUsersListView.class);
     }

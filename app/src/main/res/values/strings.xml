@@ -4,6 +4,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="fetching_success">Data has been refreshed</string>
     <string name="fetching_error">Ups... something went wrong</string>
     <string name="title_activity_user_detail">UserDetailActivity</string>
+
+    <string name="github_abbrev" translatable="false">G</string>
+    <string name="dailymotion_abbrev" translatable="false">D</string>
+
+    <string name="github_user_info">Github user info</string>
+    <string name="dailymotion_user_info">Dailymotion user info</string>
 </resources>

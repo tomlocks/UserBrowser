@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import com.tomlockapps.userbrowser.users.UsersFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -11,12 +13,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         if(savedInstanceState == null) {
-            getFragmentManager().beginTransaction().replace(R.id.main_frame ,UsersFragment.newInstance(), null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame , UsersFragment.newInstance(), null).commit();
         }
     }
 }

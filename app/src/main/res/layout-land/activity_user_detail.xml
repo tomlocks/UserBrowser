@@ -12,41 +12,35 @@
             type="com.tomlockapps.userbrowser.details.UserDetailsViewModel" />
     </data>
 
+
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/content_user_detail"
+        android:background="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black">
-
+        >
+        " <!-- maybe put color inside of viewmodel instead of getSourceType -->
         <TextView
             android:id="@+id/user_detail_source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/user_detail_image"
-            android:layout_alignLeft="@+id/user_detail_image"
-            android:layout_alignParentTop="true"
-            android:layout_alignRight="@+id/user_detail_image"
-            android:layout_alignStart="@+id/user_detail_image"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_alignTop="@+id/user_detail_image"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:padding="8dp"
             android:text="@{(viewmodel.userModel.getSourceType() == UserDataSource.GITHUB ? @string/github_user_info : @string/dailymotion_user_info)}"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/user_detail_image"
+            app:layout_constraintTop_toTopOf="@+id/user_detail_image"
+            android:layout_marginLeft="16dp" />
 
 
         <ImageView
             android:id="@+id/user_detail_image"
             android:layout_width="@dimen/avatar_details_size"
             android:layout_height="@dimen/avatar_details_size"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:onClick="@{() -> viewmodel.onAvatarClick()}"
@@ -55,30 +49,23 @@
             app:imageTransformType='@{"circleCrop"}'
             app:imageUrl="@{viewmodel.userModel.getAvatarUrl()}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="8dp" />
 
         <TextView
             android:id="@+id/user_detail_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/user_detail_image"
-            android:layout_alignLeft="@+id/user_detail_image"
-            android:layout_alignRight="@+id/user_detail_image"
-            android:layout_alignStart="@+id/user_detail_image"
-            android:layout_below="@+id/user_detail_image"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_below="@+id/user_detail_source"
+            android:layout_marginStart="16dp"
             android:gravity="center"
-            android:padding="12dp"
             android:text="@{viewmodel.userModel.getName()}"
             android:textColor="@android:color/white"
             android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_detail_image" />
+            app:layout_constraintStart_toEndOf="@+id/user_detail_image"
+            app:layout_constraintTop_toBottomOf="@+id/user_detail_source"
+            android:layout_marginLeft="16dp" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -1,8 +1,7 @@
 package com.tomlockapps.userbrowser.presenter.mock;
 
 import com.tomlockapps.userbrowser.interactor.IUsersInteractor;
-import com.tomlockapps.userbrowser.viewmodel.IUserModel;
-import com.tomlockapps.userbrowser.viewmodel.UserColor;
+import com.tomlockapps.userbrowser.data.IUserModel;
 
 import java.util.ArrayList;
 import java.util.List;

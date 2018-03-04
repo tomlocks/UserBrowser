@@ -2,8 +2,7 @@ package com.tomlockapps.userbrowser.presenter.mock;
 
 import android.os.Parcel;
 
-import com.tomlockapps.userbrowser.viewmodel.IUserModel;
-import com.tomlockapps.userbrowser.viewmodel.UserColor;
+import com.tomlockapps.userbrowser.data.IUserModel;
 
 /**
  * Created by tomlo on 27.10.2016.
@@ -30,8 +29,9 @@ public class MockedUser implements IUserModel {
         return url;
     }
 
-    public UserColor getBackgroundColor() {
-        return userColor;
+    @Override
+    public String getSourceType() {
+        return "Mocked";
     }
 
 

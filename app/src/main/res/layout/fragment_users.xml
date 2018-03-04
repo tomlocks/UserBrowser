@@ -1,22 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.tomlockapps.userbrowser.UsersFragment">
+    tools:context="com.tomlockapps.userbrowser.users.UsersFragment">
 
-        <android.support.v4.widget.SwipeRefreshLayout
+    <data>
 
-            android:id="@+id/swipeRefresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.tomlockapps.userbrowser.users.UsersViewModel" />
+
+    </data>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:onRefreshListener="@{() -> viewmodel.fetchTasks()}"
+        app:refreshing="@{viewmodel.dataLoading}">
 
         <android.support.v7.widget.RecyclerView
-
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:items="@{viewmodel.models}" />
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-</FrameLayout>
+</layout>

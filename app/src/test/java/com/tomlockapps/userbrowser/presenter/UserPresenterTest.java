@@ -2,9 +2,7 @@ package com.tomlockapps.userbrowser.presenter;
 
 import com.tomlockapps.userbrowser.presenter.mock.MockedUser;
 import com.tomlockapps.userbrowser.view.IUserView;
-import com.tomlockapps.userbrowser.viewmodel.IUserModel;
-import com.tomlockapps.userbrowser.viewmodel.UserColor;
-import com.tomlockapps.userbrowser.viewmodel.UserViewModel;
+import com.tomlockapps.userbrowser.viewmodel.UserViewModelDeprecrtated;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,14 +16,14 @@ import static org.junit.Assert.*;
  */
 public class UserPresenterTest {
 
-    private ArgumentCaptor<UserViewModel> captorUserViewModel;
+    private ArgumentCaptor<UserViewModelDeprecrtated> captorUserViewModel;
 
     private UserPresenter userPresenter;
     private IUserView mockedView;
 
     @Before
     public void setUp() throws Exception {
-        captorUserViewModel = ArgumentCaptor.forClass(UserViewModel.class);
+        captorUserViewModel = ArgumentCaptor.forClass(UserViewModelDeprecrtated.class);
 
         mockedView = Mockito.mock(IUserView.class);
 

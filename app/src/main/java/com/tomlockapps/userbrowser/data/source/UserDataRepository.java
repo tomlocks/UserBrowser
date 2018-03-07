@@ -7,7 +7,7 @@ import com.tomlockapps.userbrowser.data.IUserModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Callable;
 
 import rx.Observable;
 
@@ -17,15 +17,15 @@ import rx.Observable;
 
 public class UserDataRepository implements UserDataSource {
 
-    public static final long CACHE_MAX_AGE = TimeUnit.MINUTES.toMillis(1); // todo cache support
-
     @Nullable
-    private final UserDataSource localDataSource;
+    private final CacheDataSource cacheDataSource;
     @NonNull
     private final UserDataSource[] remoteDataSources;
 
-    protected UserDataRepository(@Nullable UserDataSource localDataSource, @NonNull UserDataSource... remoteDataSources) {
-        this.localDataSource = localDataSource;
+    private boolean cacheIsDirty; // from Google's Todos app
+
+    protected UserDataRepository(@Nullable CacheDataSource cacheDataSource, @NonNull UserDataSource... remoteDataSources) {
+        this.cacheDataSource = cacheDataSource;
         this.remoteDataSources = remoteDataSources;
     }
 
@@ -37,7 +37,30 @@ public class UserDataRepository implements UserDataSource {
             observables.add(source.getUsers());
         }
 
-        return Observable.merge(observables);
+        Observable<IUserModel> remoteObservable = Observable.merge(observables).map(userModel -> {
+            if (cacheDataSource != null)
+                cacheDataSource.insert(userModel);
+
+            return userModel;
+        });
+
+        if(cacheIsDirty && cacheDataSource != null) {
+            return Observable.fromCallable(() -> {
+                cacheDataSource.refreshUsers();
+                cacheIsDirty = false;
+
+                return null;
+            }).flatMap(o -> remoteObservable);
+        } else if(cacheDataSource != null) {
+            return cacheDataSource.getUsers().switchIfEmpty(remoteObservable);
+        } else {
+            return remoteObservable;
+        }
+    }
+
+    @Override
+    public void refreshUsers() {
+        cacheIsDirty = true;
     }
 
     public static UserDataRepository createWithoutCacheSupport(UserDataSource... remoteDataSources) {
@@ -47,7 +70,7 @@ public class UserDataRepository implements UserDataSource {
         return new UserDataRepository(null, remoteDataSources);
     }
 
-    public static UserDataRepository createWithCacheSupport(UserDataSource localDataSource, UserDataSource... remoteDataSources) {
+    public static UserDataRepository createWithCacheSupport(CacheDataSource localDataSource, UserDataSource... remoteDataSources) {
         if(localDataSource == null || remoteDataSources == null)
             throw new IllegalStateException("You must provide at least one remote data source and one local data source");
 

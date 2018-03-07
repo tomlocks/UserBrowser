@@ -27,4 +27,10 @@ public class DailyMotionSource implements UserDataSource {
     public Observable<IUserModel> getUsers() {
         return service.getUsers(Arrays.asList("avatar_360_url", "username")).flatMap(dailyMotionResponse -> Observable.from(dailyMotionResponse.list));
     }
+
+    @Override
+    public void refreshUsers() {
+        // Not required because the {@link UserDataRepository} handles the logic of refreshing the
+        // tasks from all the available data sources.
+    }
 }

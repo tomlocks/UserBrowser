@@ -48,11 +48,14 @@ public class UsersViewModel extends SavableViewModel {
         this.usersNavigator = new WeakReference<>(usersNavigator);
     }
 
-    public void fetchTasks() {
+    public void fetchTasks(final boolean useCache) {
         unsubscribe();
 
         dataLoading.set(true);
         messageString.set(null);
+
+        if(!useCache)
+            repository.refreshUsers();
 
         subscription = repository.getUsers().toList()
                 .subscribeOn(baseSchedulerProvider.computation())
@@ -60,7 +63,8 @@ public class UsersViewModel extends SavableViewModel {
                 .subscribe(iUserModels -> {
                     models.clear();
                     models.addAll(iUserModels);
-                    messageString.set(resourceProvider.getString(R.string.fetching_success));
+                    if(!useCache)
+                        messageString.set(resourceProvider.getString(R.string.fetching_success));
                 }, throwable -> {
                     messageString.set(resourceProvider.getString(R.string.fetching_error));
                     dataLoading.set(false);
@@ -103,7 +107,7 @@ public class UsersViewModel extends SavableViewModel {
                 ArrayList<IUserModel> extraUserModels = b.getParcelableArrayList(EXTRA_USER_MODELS);
                 models.addAll(extraUserModels);
             } else {
-                fetchTasks();
+                fetchTasks(true);
             }
         }
     }

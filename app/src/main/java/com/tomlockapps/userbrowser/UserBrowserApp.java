@@ -2,8 +2,10 @@ package com.tomlockapps.userbrowser;
 
 import android.app.Application;
 
+import com.tomlockapps.userbrowser.base.providers.impl.SystemTimeProvider;
 import com.tomlockapps.userbrowser.data.RepositoryInjection;
 import com.tomlockapps.userbrowser.data.source.UserDataRepository;
+import com.tomlockapps.userbrowser.data.source.local.room.RoomUsersRepository;
 import com.tomlockapps.userbrowser.data.source.remote.dailymotion.DailyMotionSource;
 import com.tomlockapps.userbrowser.data.source.remote.github.GithubSource;
 import com.tomlockapps.userbrowser.util.ProcessUtil;
@@ -21,6 +23,7 @@ public class UserBrowserApp extends Application {
         if(!ProcessUtil.isMainProcess(getApplicationContext()))
             return;
 
-        RepositoryInjection.setUserDataRepository(UserDataRepository.createWithoutCacheSupport(new GithubSource(), new DailyMotionSource()));
+        RepositoryInjection.setUserDataRepository(UserDataRepository.createWithCacheSupport(new RoomUsersRepository(getApplicationContext(), new SystemTimeProvider()),
+                new GithubSource(), new DailyMotionSource()));
     }
 }

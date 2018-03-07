@@ -23,4 +23,10 @@ public class GithubSource implements UserDataSource {
     public Observable<IUserModel> getUsers() {
         return service.getUsers().flatMap(Observable::from);
     }
+
+    @Override
+    public void refreshUsers() {
+        // Not required because the {@link UserDataRepository} handles the logic of refreshing the
+        // tasks from all the available data sources.
+    }
 }

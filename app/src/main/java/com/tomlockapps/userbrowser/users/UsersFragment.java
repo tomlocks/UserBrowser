@@ -68,7 +68,7 @@ public class UsersFragment extends Fragment implements UsersNavigator {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         if(savedInstanceState == null)
-            viewModel.fetchTasks();
+            viewModel.fetchTasks(true);
         else
             viewModel.onRestoreInstanceState(savedInstanceState);
 

@@ -16,6 +16,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public interface UserDataSource {
     Observable<IUserModel> getUsers();
+    void refreshUsers();
 
     @Retention(SOURCE)
     @IntDef({DAILY_MOTION, GITHUB})
